@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SUSTAIN(A)GAME – Play Your Way into Sustainability</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    :root {
+      --bg-dark: #050816;
+      --bg-section: #0c1220;
+      --accent: #39d98a;
+      --accent-soft: #2a9460;
+      --text-main: #f7f7f7;
+      --text-muted: #a1aec8;
+      --border-subtle: #232b3d;
+      --card-bg: #10182b;
+      --button-bg: #39d98a;
+      --button-bg-alt: #1f2937;
+      --button-text: #050816;
+      --max-width: 1120px;
+      --radius-lg: 18px;
+      --radius-md: 12px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #182135 0, #050816 45%);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    header, section {
+      padding: 3.5rem 1.5rem;
+    }
+
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    /* NAVBAR */
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 1.5rem 0.75rem;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+    }
+
+    .logo-circle {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: conic-gradient(from 180deg, #39d98a, #4f46e5, #14b8a6, #39d98a);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: 700;
+      color: #050816;
+    }
+
+    .nav-title-main {
+      font-weight: 700;
+      letter-spacing: .04em;
+      font-size: 1.1rem;
+    }
+
+    .nav-title-sub {
+      font-size: .75rem;
+      color: var(--text-muted);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.75rem;
+      font-size: .9rem;
+      color: var(--text-muted);
+    }
+
+    .nav-links a:hover {
+      color: var(--text-main);
+    }
+
+    .nav-cta {
+      display: flex;
+      gap: .75rem;
+    }
+
+    .btn {
+      border-radius: 999px;
+      padding: .6rem 1.3rem;
+      font-size: .9rem;
+      border: 1px solid transparent;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: .4rem;
+    }
+
+    .btn-primary {
+      background: var(--button-bg);
+      color: var(--button-text);
+      font-weight: 600;
+    }
+
+    .btn-secondary {
+      background: rgba(15,23,42,0.7);
+      color: var(--text-main);
+      border-color: var(--border-subtle);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-soft);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--accent);
+    }
+
+    /* HERO */
+    .hero {
+      padding-top: 2rem;
+      padding-bottom: 3rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1.1fr);
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .hero-kicker {
+      font-size: .8rem;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: .8rem;
+    }
+
+    .hero-title {
+      font-size: clamp(2.2rem, 3.4vw, 3rem);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+
+    .hero-highlight {
+      background: linear-gradient(90deg, #39d98a, #4f46e5);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: .98rem;
+      color: var(--text-muted);
+      max-width: 30rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .85rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      font-size: .8rem;
+      color: var(--text-muted);
+    }
+
+    .hero-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+    }
+
+    .hero-meta-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .hero-card {
+      background: radial-gradient(circle at top, #1e293b 0, #020617 40%);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      border: 1px solid rgba(148,163,184,0.2);
+      box-shadow: 0 22px 40px rgba(15,23,42,0.8);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-badge {
+      font-size: .7rem;
+      text-transform: uppercase;
+      letter-spacing: .16em;
+      color: var(--text-muted);
+      margin-bottom: .75rem;
+    }
+
+    .hero-card-title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .hero-preview {
+      background: rgba(15,23,42,0.9);
+      border-radius: var(--radius-md);
+      padding: .9rem;
+      border: 1px solid rgba(148,163,184,0.35);
+      font-size: .75rem;
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: .9rem;
+    }
+
+    .hero-chart-block h4 {
+      font-size: .8rem;
+      margin-bottom: .45rem;
+      color: var(--text-muted);
+    }
+
+    .hero-chart-bars {
+      display: flex;
+      flex-direction: column;
+      gap: .35rem;
+    }
+
+    .bar-row {
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+      font-size: .7rem;
+    }
+
+    .bar-label {
+      width: 80px;
+      color: var(--text-muted);
+    }
+
+    .bar-track {
+      flex: 1;
+      height: 6px;
+      border-radius: 999px;
+      background: #020617;
+      overflow: hidden;
+    }
+
+    .bar-fill {
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, #39d98a, #4f46e5);
+    }
+
+    .hero-flow {
+      display: flex;
+      flex-direction: column;
+      gap: .4rem;
+    }
+
+    .flow-pill {
+      font-size: .7rem;
+      padding: .35rem .6rem;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.9);
+      border: 1px solid rgba(148,163,184,0.5);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      white-space: nowrap;
+    }
+
+    .arrow {
+      font-size: .8rem;
+      text-align: center;
+      color: var(--text-muted);
+    }
+
+    .hero-score {
+      margin-top: .7rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: .75rem;
+      color: var(--text-muted);
+    }
+
+    .score-value {
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    /* SECTION GENERIC */
+    .section-title {
+      font-size: 1.4rem;
+      margin-bottom: .4rem;
+      font-weight: 700;
+    }
+
+    .section-subtitle {
+      font-size: .9rem;
+      color: var(--text-muted);
+      max-width: 36rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-subtle);
+      padding: 1.1rem 1.1rem 1rem;
+      font-size: .88rem;
+    }
+
+    .card-title {
+      font-weight: 600;
+      margin-bottom: .35rem;
+    }
+
+    .card-tag {
+      font-size: .68rem;
+      text-transform: uppercase;
+      letter-spacing: .16em;
+      color: var(--accent);
+      margin-bottom: .4rem;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .45rem;
+      margin-top: .6rem;
+      font-size: .72rem;
+    }
+
+    .chip {
+      padding: .25rem .6rem;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.9);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+    }
+
+    .feature-list {
+      display: grid;
+      grid-template-columns: repeat(2,minmax(0,1fr));
+      gap: 1rem;
+      font-size: .88rem;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: .55rem;
+    }
+
+    .feature-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      margin-top: .28rem;
+    }
+
+    /* PRICING */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(4,minmax(0,1fr));
+      gap: 1.1rem;
+      font-size: .85rem;
+    }
+
+    .pricing-card {
+      background: #020617;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-subtle);
+      padding: 1rem .9rem 1.1rem;
+      display: flex;
+      flex-direction: column;
+      gap: .6rem;
+    }
+
+    .pricing-name {
+      font-weight: 600;
+    }
+
+    .pricing-price {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .pricing-note {
+      font-size: .7rem;
+      color: var(--text-muted);
+    }
+
+    /* CTA FOOTER */
+    .cta {
+      padding: 3rem 1.5rem 3.5rem;
+      background: linear-gradient(135deg, #111827, #020617);
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .cta-box {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .cta-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: .3rem;
+    }
+
+    .cta-text {
+      font-size: .9rem;
+      color: var(--text-muted);
+    }
+
+    .cta-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .75rem;
+    }
+
+    footer {
+      padding: 1.5rem;
+      font-size: .75rem;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .hero-grid {
+        grid-template-columns: minmax(0,1fr);
+      }
+      .grid-3 {
+        grid-template-columns: minmax(0,1fr);
+      }
+      .feature-list {
+        grid-template-columns: minmax(0,1fr);
+      }
+      .pricing-grid {
+        grid-template-columns: repeat(2,minmax(0,1fr));
+      }
+      .nav-links {
+        display: none;
+      }
+    }
+
+    @media (max-width: 640px) {
+      header, section, .cta {
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+      .pricing-grid {
+        grid-template-columns: minmax(0,1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <div class="navbar">
+    <div class="nav-left">
+      <div class="logo-circle">S</div>
+      <div>
+        <div class="nav-title-main">SUSTAIN(A)GAME</div>
+        <div class="nav-title-sub">Serious game for a livable future</div>
+      </div>
+    </div>
+    <nav class="nav-links">
+      <a href="#about">About</a>
+      <a href="#how">How it works</a>
+      <a href="#features">Features</a>
+      <a href="#pricing">Pricing</a>
+    </nav>
+    <div class="nav-cta">
+      <button class="btn btn-secondary">Sign in</button>
+      <button class="btn btn-primary">Play demo</button>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="container hero-grid">
+      <div>
+        <div class="hero-kicker">DIGITAL SERIOUS GAME</div>
+        <h1 class="hero-title">
+          Play your way into <span class="hero-highlight">sustainability</span>.
+        </h1>
+        <p class="hero-subtitle">
+          SUSTAIN(A)GAME turns real-world sustainability and circular economy
+          challenges into an engaging strategy game, powered by LCA-style impact feedback.
+        </p>
+        <div class="hero-actions">
+          <button class="btn btn-primary">Get started for free</button>
+          <button class="btn btn-secondary">View gameplay scenarios</button>
+        </div>
+        <div class="hero-meta">
+          <span><span class="hero-meta-dot"></span> Mobile & web – global reach</span>
+          <span><span class="hero-meta-dot"></span> Built for B2C, ready for B2B2C</span>
+        </div>
+      </div>
+
+      <div>
+        <div class="hero-card">
+          <div class="hero-badge">In-game analytics · LCA-inspired</div>
+          <div class="hero-card-title">SUSTAIN(A)GAME – LCA dashboard preview</div>
+          <div class="hero-preview">
+            <div class="hero-chart-block">
+              <h4>Impact overview</h4>
+              <div class="hero-chart-bars">
+                <div class="bar-row">
+                  <div class="bar-label">CO₂</div>
+                  <div class="bar-track">
+                    <div class="bar-fill" style="width: 72%;"></div>
+                  </div>
+                </div>
+                <div class="bar-row">
+                  <div class="bar-label">Water</div>
+                  <div class="bar-track">
+                    <div class="bar-fill" style="width: 46%;"></div>
+                  </div>
+                </div>
+                <div class="bar-row">
+                  <div class="bar-label">Materials</div>
+                  <div class="bar-track">
+                    <div class="bar-fill" style="width: 59%;"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="hero-flow">
+              <div class="flow-pill">Raw materials</div>
+              <div class="arrow">↓</div>
+              <div class="flow-pill">Production</div>
+              <div class="arrow">↓</div>
+              <div class="flow-pill">Use phase</div>
+              <div class="arrow">↓</div>
+              <div class="flow-pill">End-of-life</div>
+            </div>
+          </div>
+          <div class="hero-score">
+            <span>Scenario: Circular City – Year 3</span>
+            <span>Impact score: <span class="score-value">12,570</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <h2 class="section-title">What is SUSTAIN(A)GAME?</h2>
+      <p class="section-subtitle">
+        A digital serious game that helps players explore climate, circular economy,
+        and life cycle impacts through interactive, replayable scenarios.
+        Built as a product-based platform: create once, scale globally.
+      </p>
+      <div class="grid-3">
+        <div class="card">
+          <div class="card-tag">Game-first</div>
+          <div class="card-title">Strategy, not slides</div>
+          <p>
+            Players manage resources, infrastructure and behaviors, instead of reading
+            long reports. Learning emerges from meaningful decisions and consequences.
+          </p>
+        </div>
+        <div class="card">
+          <div class="card-tag">LCA-inspired</div>
+          <div class="card-title">Impact you can see</div>
+          <p>
+            Choices trigger real-time changes in footprints: CO₂, water, materials
+            and circularity scores, based on simplified LCA logic.
+          </p>
+        </div>
+        <div class="card">
+          <div class="card-tag">Scalable</div>
+          <div class="card-title">Global digital reach</div>
+          <p>
+            Mobile and browser-based, with low marginal cost per player.
+            Suitable for individual learners and large cohorts around the world.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="how">
+    <div class="container">
+      <h2 class="section-title">How the game works</h2>
+      <p class="section-subtitle">
+        Each scenario turns complex sustainability challenges into a clear, repeatable
+        decision loop that invites experimentation and systems thinking.
+      </p>
+      <div class="feature-list">
+        <div class="feature-item">
+          <div class="feature-dot"></div>
+          <div>
+            <strong>1. Choose a scenario</strong><br>
+            From Circular City to Zero-Waste Campus and Sustainable Supply Chain,
+            players select the context that fits their interests.
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-dot"></div>
+          <div>
+            <strong>2. Make strategic decisions</strong><br>
+            Allocate budgets, select technologies, design policies and behaviors —
+            balancing quality of life with environmental constraints.
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-dot"></div>
+          <div>
+            <strong>3. Get instant LCA-style feedback</strong><br>
+            See how your decisions affect CO₂, water, material use and circularity 
+            across the full life cycle.
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-dot"></div>
+          <div>
+            <strong>4. Optimize, compare & replay</strong><br>
+            Compete with yourself and others, try new strategies, and discover 
+            sustainable pathways through play.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES / SEGMENTS -->
+  <section id="features">
+    <div class="container">
+      <h2 class="section-title">Built for players, ready for educators and teams</h2>
+      <p class="section-subtitle">
+        SUSTAIN(A)GAME focuses on B2C players while supporting B2B2C use through
+        institutional licensing and dashboards.
+      </p>
+      <div class="grid-3">
+        <div class="card">
+          <div class="card-title">Eco-curious mobile gamers</div>
+          <p>
+            Short sessions, clear feedback and unlockable scenarios make sustainability
+            approachable and fun.
+          </p>
+          <div class="chips">
+            <span class="chip">Freemium</span>
+            <span class="chip">Leaderboards</span>
+            <span class="chip">Achievements</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">Purpose-driven professionals</div>
+          <p>
+            Deeper scenarios for circular economy, ESG trade-offs and business model
+            experimentation.
+          </p>
+          <div class="chips">
+            <span class="chip">Advanced scenarios</span>
+            <span class="chip">Pro analytics</span>
+            <span class="chip">Certificates (optional)</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">Educators & organizations</div>
+          <p>
+            Run facilitated sessions with cohorts, track progress and debrief on
+            decisions and outcomes.
+          </p>
+          <div class="chips">
+            <span class="chip">Institutional licensing</span>
+            <span class="chip">Cohort dashboards</span>
+            <span class="chip">Scenario library</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing">
+    <div class="container">
+      <h2 class="section-title">Flexible, scalable revenue model</h2>
+      <p class="section-subtitle">
+        Designed as a product-based platform – build once, sell many – with a mix
+        of B2C and institutional options.
+      </p>
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <div class="pricing-name">Free</div>
+          <div class="pricing-price">$0</div>
+          <div class="pricing-note">Core gameplay + 1–2 starter scenarios.</div>
+        </div>
+        <div class="pricing-card">
+          <div class="pricing-name">Plus (Premium)</div>
+          <div class="pricing-price">One-time</div>
+          <div class="pricing-note">Unlock extra scenarios and features once.</div>
+        </div>
+        <div class="pricing-card">
+          <div class="pricing-name">Pro (Subscription)</div>
+          <div class="pricing-price">Monthly</div>
+          <div class="pricing-note">New scenarios, events and analytics for power users.</div>
+        </div>
+        <div class="pricing-card">
+          <div class="pricing-name">Institutional</div>
+          <div class="pricing-price">Licensing</div>
+          <div class="pricing-note">For schools, universities & organizations (B2B2C).</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta">
+    <div class="cta-box">
+      <div>
+        <div class="cta-title">Ready to turn sustainability into a game?</div>
+        <div class="cta-text">
+          Start with the free version of SUSTAIN(A)GAME and explore your first
+          sustainability scenario today.
+        </div>
+      </div>
+      <div class="cta-actions">
+        <button class="btn btn-primary">Get started for free</button>
+        <button class="btn btn-secondary">Talk to us about licensing</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    © 2025 SUSTAIN(A)GAME. Designed as a scalable digital serious game for sustainability learning.
+  </footer>
+</body>
+</html>
